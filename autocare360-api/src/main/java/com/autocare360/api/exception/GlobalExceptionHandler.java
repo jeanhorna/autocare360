@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -25,6 +28,21 @@ public class GlobalExceptionHandler {
         CodigoError codigo = ex.getCodigoError();
         log.warn("[{}] {} -> {}", codigo.getCodigo(), request.getRequestURI(), ex.getMessage());
         return responder(codigo, ex.getMessage(), request, null);
+    }
+    
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<ApiError> manejarAutenticacion(AuthenticationException ex, HttpServletRequest request) {
+        log.warn("Autenticacion fallida en {}: {}", request.getRequestURI(), ex.getMessage());
+        String mensaje = ex instanceof BadCredentialsException
+                ? "Correo o contrasena incorrectos"
+                : CodigoError.NO_AUTENTICADO.getMensaje();
+        return responder(CodigoError.NO_AUTENTICADO, mensaje, request, null);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ApiError> manejarAccesoDenegado(AccessDeniedException ex, HttpServletRequest request) {
+        log.warn("Acceso denegado en {}", request.getRequestURI());
+        return responder(CodigoError.ACCESO_DENEGADO, CodigoError.ACCESO_DENEGADO.getMensaje(), request, null);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
