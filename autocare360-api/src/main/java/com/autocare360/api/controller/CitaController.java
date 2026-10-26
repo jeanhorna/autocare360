@@ -15,12 +15,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.time.Clock;
 import java.time.LocalDate;
 import java.util.List;
 
 /** RF-04 (motor de reservas y disponibilidad) y RF-05 (panel de recepcion). */
+@Tag(name = "Citas", description = "Motor de reservas, disponibilidad y panel de recepcion (RF-04, RF-05)")
 @RestController
 @RequestMapping("/api/citas")
 @RequiredArgsConstructor

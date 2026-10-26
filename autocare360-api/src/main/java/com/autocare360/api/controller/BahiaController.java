@@ -10,9 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
+@Tag(name = "Bahias", description = "Bahias de trabajo del taller")
 @RestController
 @RequestMapping("/api/bahias")
 @RequiredArgsConstructor

@@ -12,10 +12,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
 /** RF-02: Gestion de vehiculos por placa. */
+@Tag(name = "Vehiculos", description = "Gestion de vehiculos por placa (RF-02)")
 @RestController
 @RequestMapping("/api/vehiculos")
 @RequiredArgsConstructor

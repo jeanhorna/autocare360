@@ -9,10 +9,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
 /** RF-03: Catalogo de servicios (lectura publica, mantenimiento solo ADMINISTRADOR). */
+@Tag(name = "Servicios", description = "Catalogo de servicios de mantenimiento (RF-03)")
 @RestController
 @RequestMapping("/api/servicios")
 @RequiredArgsConstructor
