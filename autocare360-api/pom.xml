@@ -21,6 +21,7 @@
         <jjwt.version>0.12.6</jjwt.version>
         <java.version>17</java.version>
         <guava.version>33.4.8-jre</guava.version>
+        <poi.version>5.4.1</poi.version>
     </properties>
 
     <dependencies>
@@ -116,6 +117,12 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+                <!-- Apache POI (Excel .xlsx) -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
         </dependency>
     </dependencies>
 
